@@ -61,7 +61,6 @@ def action_wrapper(hermes, intentMessage, conf):
        print 'http://'+ myip.encode("utf-8") + ':' + myport.encode("utf-8") + '/api/states/' + myDeviceId.encode("utf-8")
        print myDeviceName.encode("utf-8")
        print  myDeviceId.encode("utf-8")
-       print intentMessage.slots.device_name[0].value
        hermes.publish_end_session(current_session_id, "Sorry, something went wrong again")
 
  
