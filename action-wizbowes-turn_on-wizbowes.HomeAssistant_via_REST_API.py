@@ -44,19 +44,22 @@ def action_wrapper(hermes, intentMessage, conf):
 # put this line back one once the bug is resolved: https://github.com/snipsco/snips-issues/issues/68
 #        myDeviceName = intentMessage.slots.device_name.first().raw_value
      auth = conf['secret']['ha-apikey']
+     myip = conf['secret']['ha-ipaddress']
+     myport = conf['secret']['ha-port']
      header = {'Authorization': auth.encode("utf-8"), 'Content-Type': 'application/json'}
      print header
      if myState != "query":
-       payload = json.dumps({"entity_id": myDeviceId})
-       url = 'http://'+ conf['secret']['ha-ipaddress'] + ':' + conf['secret']['ha-port'] + '/api/services/homeassistant/turn_' + myState
+       payload = json.dumps({"entity_id": myDeviceId.encode("utf-8")})
+       url = 'http://'+ myip.encode("utf-8") + ':' + myport.encode("utf-8") + '/api/services/homeassistant/turn_' + myState.encode("utf-8")
        response = post(url, headers=header, data=payload)
-       hermes.publish_end_session(current_session_id, "Turning " + myState + " " + myDeviceName)
+       hermes.publish_end_session(current_session_id, "Turning " + myState.encode("utf-8") + " " + myDeviceName.encode("utf-8"))
      else:
-       url = 'http://'+ conf['secret']['ha-ipaddress'] + ':' + conf['secret']['ha-port'] + '/api/states/' + myDeviceId
+       url = 'http://'+ myip.encode("utf-8") + ':' + myport.encode("utf-8") + '/api/states/' + myDeviceId.encode("utf-8")
        response = get(url, headers=header)
-       hermes.publish_end_session(current_session_id, myDeviceName + " is " + response.json()['state'])
+       hermes.publish_end_session(current_session_id, myDeviceName.encode("utf-8") + " is " + response.json()['state'])
     except:
-       hermes.publish_end_session(current_session_id, "Sorry, something went wrong with")
+       print 'http://'+ myip.encode("utf-8") + ':' + myport.encode("utf-8") + '/api/states/' + myDeviceId.encode("utf-8")
+       hermes.publish_end_session(current_session_id, "Sorry, something went wrong again")
 
  
 
