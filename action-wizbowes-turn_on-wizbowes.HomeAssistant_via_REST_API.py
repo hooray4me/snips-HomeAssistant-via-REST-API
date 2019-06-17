@@ -59,6 +59,7 @@ def action_wrapper(hermes, intentMessage, conf):
        hermes.publish_end_session(current_session_id, myDeviceName.encode("utf-8") + " is " + response.json()['state'])
     except:
        print 'http://'+ myip.encode("utf-8") + ':' + myport.encode("utf-8") + '/api/states/' + myDeviceId.encode("utf-8")
+       print myDeviceName.encode("utf-8")
        hermes.publish_end_session(current_session_id, "Sorry, something went wrong again")
 
  
