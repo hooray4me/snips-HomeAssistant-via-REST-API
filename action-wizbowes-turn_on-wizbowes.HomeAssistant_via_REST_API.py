@@ -44,7 +44,7 @@ def action_wrapper(hermes, intentMessage, conf):
 # put this line back one once the bug is resolved: https://github.com/snipsco/snips-issues/issues/68
 #        myDeviceName = intentMessage.slots.device_name.first().raw_value
      header = {'Authorization': conf['secret']['ha-apikey'], 'Content-Type': 'application/json'}
-
+print header
      if myState != "query":
        payload = json.dumps({"entity_id": myDeviceId})
        url = 'http://'+ conf['secret']['ha-ipaddress'] + ':' + conf['secret']['ha-port'] + '/api/services/homeassistant/turn_' + myState
