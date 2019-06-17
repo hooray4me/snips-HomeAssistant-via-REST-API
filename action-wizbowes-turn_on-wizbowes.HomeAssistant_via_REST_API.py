@@ -44,7 +44,7 @@ def action_wrapper(hermes, intentMessage, conf):
 # put this line back one once the bug is resolved: https://github.com/snipsco/snips-issues/issues/68
 #        myDeviceName = intentMessage.slots.device_name.first().raw_value
      auth = conf['secret']['ha-apikey']
-     header = {'Authorization': auth.encode("utf-8")), 'Content-Type': 'application/json'}
+     header = {'Authorization': auth.encode("utf-8"), 'Content-Type': 'application/json'}
      print header
      if myState != "query":
        payload = json.dumps({"entity_id": myDeviceId})
