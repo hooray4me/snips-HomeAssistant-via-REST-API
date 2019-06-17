@@ -43,7 +43,7 @@ def action_wrapper(hermes, intentMessage, conf):
         myDeviceName = intentMessage.slots.device_name[0].raw_value 
 # put this line back one once the bug is resolved: https://github.com/snipsco/snips-issues/issues/68
 #        myDeviceName = intentMessage.slots.device_name.first().raw_value
-     authorization = 'Bearer '+ conf['secret']['ha-apikey']
+     authorization = 'Bearer ' + conf['secret']['ha-apikey']
      header = {'Authorization': authorization, 'Content-Type': 'application/json'}
 
      if myState != "query":
@@ -65,5 +65,5 @@ if __name__ == "__main__":
     mqtt_opts = MqttOptions()
     with Hermes(mqtt_options=mqtt_opts) as h:
 #    with Hermes("localhost:1883") as h:
-        h.subscribe_intent("wizbowes:turn_on", subscribe_intent_callback) \
+        h.subscribe_intent("hooray4me:turn_on", subscribe_intent_callback) \
          .start()
