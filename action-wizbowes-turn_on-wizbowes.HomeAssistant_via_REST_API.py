@@ -60,6 +60,7 @@ def action_wrapper(hermes, intentMessage, conf):
     except:
        print 'http://'+ myip.encode("utf-8") + ':' + myport.encode("utf-8") + '/api/states/' + myDeviceId.encode("utf-8")
        print myDeviceName.encode("utf-8")
+       print intentMessage.slots.device_name.first().rawValue
        hermes.publish_end_session(current_session_id, "Sorry, something went wrong again")
 
  
@@ -71,3 +72,4 @@ if __name__ == "__main__":
 #    with Hermes("localhost:1883") as h:
         h.subscribe_intent("hooray4me:turn_on", subscribe_intent_callback) \
          .start()
+
