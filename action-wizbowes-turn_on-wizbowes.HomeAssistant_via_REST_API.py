@@ -56,7 +56,7 @@ def action_wrapper(hermes, intentMessage, conf):
        response = get(url, headers=header)
        hermes.publish_end_session(current_session_id, myDeviceName + " is " + response.json()['state'])
     except:
-       hermes.publish_end_session(current_session_id, "Sorry, something went wrong")
+       hermes.publish_end_session(current_session_id, "Sorry, something went wrong with " + myDeviceId + " also known as " + myDeviceName)
 
  
 
